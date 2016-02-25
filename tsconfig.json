@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "declaration": true,
+    "sourceMap": false,
+    "target": "es5",
+    "outDir": "lib"
+  },
+  "filesGlob": [
+    "src/**/*.ts"
+  ],
+  "files": [
+    "src/classes/helper/ApiParser.ts",
+    "src/classes/helper/ApiRepository.ts",
+    "src/classes/helper/DefaultApiParser.ts",
+    "src/classes/helper/List.ts",
+    "src/index.ts",
+    "src/interfaces/data/DataRepository.ts",
+    "src/interfaces/model/Ctor.ts",
+    "src/interfaces/model/Model.ts",
+    "src/interfaces/model/modelFactory.ts",
+    "src/interfaces/model/Serializable.ts",
+    "src/interfaces/service/Service.ts",
+    "src/typings/bluebird/bluebird.d.ts",
+    "src/typings/form-data/form-data.d.ts",
+    "src/typings/node/node.d.ts",
+    "src/typings/request-promise/request-promise.d.ts",
+    "src/typings/request/request.d.ts",
+    "src/typings/tsd.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}

@@ -1,0 +1,30 @@
+[ERR!] cwd  : /home/david/Documents/Code/resource-model/src
+[ERR!] os   : Linux 3.19.0-33-generic
+[ERR!] argv : "node" "/usr/local/bin/tsd" "init"
+[ERR!] node : v0.12.7
+[ERR!] tsd  : 0.6.5
+[ERR!] Error: cannot overwrite file /home/david/Documents/Code/resource-model/src/tsd.json
+[ERR!] CODE : undefined
+[ERR!] cannot overwrite file /home/david/Documents/Code/resource-model/src/tsd.json
+[ERR!] If you need help, you may report this error at:
+    https://github.com/DefinitelyTyped/tsd/issues
+
+[ERR!] 
+VError: cannot overwrite file /home/david/Documents/Code/resource-model/src/tsd.json
+    at /usr/local/lib/node_modules/tsd/build/tsd/logic/ConfigIO.js:22:27
+    at tryCatch1 (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/util.js:63:19)
+    at Promise$_callHandler [as _callHandler] (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/promise.js:695:13)
+    at Promise$_settlePromiseFromHandler [as _settlePromiseFromHandler] (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/promise.js:711:18)
+    at Promise$_settlePromiseAt [as _settlePromiseAt] (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/promise.js:868:14)
+    at Promise$_settlePromises [as _settlePromises] (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/promise.js:1006:14)
+    at Async$_consumeFunctionBuffer [as _consumeFunctionBuffer] (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/async.js:74:12)
+    at Async$consumeFunctionBuffer (/usr/local/lib/node_modules/tsd/node_modules/bluebird/js/main/async.js:37:14)
+    at process._tickCallback (node.js:355:11)
+
+[ERR!] tsd.json: {"version":"v4","repo":"borisyankov/DefinitelyTyped","ref":"master","path":"typings","bundle":"typings/tsd.d.ts","installed":{"request-promise/request-promise.d.ts":{"commit":"44c9273e1e92bc95368f599d1dcda9f560a68956"},"request/request.d.ts":{"commit":"44c9273e1e92bc95368f599d1dcda9f560a68956"},"node/node.d.ts":{"commit":"44c9273e1e92bc95368f599d1dcda9f560a68956"},"form-data/form-data.d.ts":{"commit":"44c9273e1e92bc95368f599d1dcda9f560a68956"},"bluebird/bluebird.d.ts":{"commit":"44c9273e1e92bc95368f599d1dcda9f560a68956"},"dojo/dojox.collections.d.ts":{"commit":"85af69c91599a6c904618545f0613970e1ff3f64"},"dojo/dojo.d.ts":{"commit":"85af69c91599a6c904618545f0613970e1ff3f64"}}}
+
+[ERR!] .tsdrc could not be retrieved
+
+[ERR!] Please include the following file with any support request:
+    /home/david/Documents/Code/resource-model/src/tsd-debug.log
+
