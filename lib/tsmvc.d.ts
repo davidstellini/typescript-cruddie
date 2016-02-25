@@ -181,6 +181,6 @@ declare module 'tsmvc/lib/interfaces/service/Service' {
 
 }
 declare module 'tsmvc' {
-	import main = require('tsmvc/index');
+	import main = require('tsmvc/lib/index');
 	export = main;
 }
