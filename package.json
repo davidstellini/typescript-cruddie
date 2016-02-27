@@ -5,7 +5,7 @@
   "main": "lib/index",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Davste93/resource-model.git"
+    "url": "git+https://github.com/Davste93/typescript-mvc.git"
   },
   "typescript": {
     "definition": "./lib/tsmvc.d.ts"
@@ -24,9 +24,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Davste93/resource-model/issues"
+    "url": "https://github.com/Davste93/typescript-mvc/issues"
   },
-  "homepage": "https://github.com/Davste93/resource-model#readme",
+  "homepage": "https://github.com/Davste93/typescript-mvc#readme",
   "devDependencies": {
     "autodts": "0.0.6",
     "bluebird": "^3.2.2",
