@@ -4,4 +4,4 @@
 /// <reference path="node/node.d.ts" />
 /// <reference path="request-promise/request-promise.d.ts" />
 /// <reference path="request/request.d.ts" />
-/// <reference path="../../node_modules/inversify/type_definitions/inversify-npm.d.ts"/>
+/// <reference path="inversify/inversify.d.ts"/>
