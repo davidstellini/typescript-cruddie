@@ -3,7 +3,6 @@ import {ModelFactory} from "../../interfaces/model/modelFactory";
 import {List} from "./List";
 
 export abstract class ApiItemParser<T extends Model> {
-  factory : ModelFactory<T>;
 
   Parse(response : string ) : T{
     return <T>JSON.parse(response);
@@ -15,9 +14,7 @@ export abstract class ApiItemParser<T extends Model> {
     var resp = JSON.parse(response);
     resp.forEach(modelListItem =>
     {
-      var model = this.factory.create();
-      model.FromJson(modelListItem);
-
+      var model = <T> modelListItem;
       items.add(model);
     });
 

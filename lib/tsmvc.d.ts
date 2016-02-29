@@ -43,10 +43,8 @@ declare module 'tsmvc/lib/classes/helper/List' {
 }
 declare module 'tsmvc/lib/classes/helper/ApiParser' {
 	import { Model } from 'tsmvc/lib/interfaces/model/Model';
-	import { ModelFactory } from 'tsmvc/lib/interfaces/model/modelFactory';
 	import { List } from 'tsmvc/lib/classes/helper/List';
 	export abstract class ApiItemParser<T extends Model> {
-	    factory: ModelFactory<T>;
 	    Parse(response: string): T;
 	    ParseList(response: string): List<T>;
 	}
@@ -66,16 +64,6 @@ declare module 'tsmvc/lib/interfaces/data/DataRepository' {
 	    removeItem(emptyModelWithID: T): Promise<T>;
 	    saveItem(modelItem: T): Promise<T>;
 	    factory: ModelFactory<T>;
-	}
-
-}
-declare module 'tsmvc/lib/classes/helper/DefaultApiParser' {
-	import { ApiItemParser } from 'tsmvc/lib/classes/helper/ApiParser';
-	import { Model } from 'tsmvc/lib/interfaces/model/Model';
-	import { ModelFactory } from 'tsmvc/lib/interfaces/model/modelFactory';
-	export class DefaultApiParser<T extends Model> extends ApiItemParser<T> {
-	    factory: ModelFactory<T>;
-	    constructor(factory: ModelFactory<T>);
 	}
 
 }
@@ -111,16 +99,6 @@ declare module 'tsmvc/lib/interfaces/model/Ctor' {
 	export interface ICtor<T> {
 	    new (): T;
 	}
-
-}
-declare module 'tsmvc/lib/index' {
-	export * from 'tsmvc/lib/classes/helper/ApiParser';
-	export * from 'tsmvc/lib/classes/helper/ApiRepository';
-	export * from 'tsmvc/lib/classes/helper/DefaultApiParser';
-	export * from 'tsmvc/lib/classes/helper/List';
-	export * from 'tsmvc/lib/interfaces/data/DataRepository';
-	export * from 'tsmvc/lib/interfaces/model/Ctor';
-	export * from 'tsmvc/lib/interfaces/model/Model';
 
 }
 declare module 'tsmvc/node_modules/inversify/type_definitions/inversify-npm' {
@@ -178,6 +156,17 @@ declare module 'tsmvc/node_modules/inversify/type_definitions/inversify-npm' {
 declare module 'tsmvc/lib/interfaces/service/Service' {
 	export interface Service {
 	}
+
+}
+declare module 'tsmvc/lib/index' {
+	export * from 'tsmvc/lib/classes/helper/ApiParser';
+	export * from 'tsmvc/lib/classes/helper/ApiRepository';
+	export * from 'tsmvc/lib/classes/helper/DefaultApiParser';
+	export * from 'tsmvc/lib/classes/helper/List';
+	export * from 'tsmvc/lib/interfaces/data/DataRepository';
+	export * from 'tsmvc/lib/interfaces/model/Ctor';
+	export * from 'tsmvc/lib/interfaces/model/Model';
+	export * from 'tsmvc/lib/interfaces/service/Service';
 
 }
 declare module 'tsmvc' {

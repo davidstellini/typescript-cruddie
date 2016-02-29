@@ -30,7 +30,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     }
 
     //Build request options
-  buildReqOptions(requestType : string, url : string, model : any) : any {
+  public buildReqOptions(requestType : string, url : string, model : any) : any {
 
     var options = {
       method : requestType,
@@ -46,7 +46,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   }
 
 
-  buildRequestAndParseAsT<T extends Model> (
+  public buildRequestAndParseAsT<T extends Model> (
     url : string,
     requestType : string,
     parser : ApiItemParser<T>,
@@ -62,7 +62,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     });
   }
 
-  buildRequestAndParseAsTList<T extends Model> (
+  public buildRequestAndParseAsTList<T extends Model> (
     url : string,
     requestType : string,
     parser : ApiItemParser<T>,
@@ -83,7 +83,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   /** Makes a request. If model is not null, it will pass it to the request
   as JSON. It will parse the response using the parser function provided,
   encapsulated in a promise. Uses default item parser. */
-   buildRequestAndParseAsModel (
+   public buildRequestAndParseAsModel (
      url : string,
      requestType : string,
      model : any
@@ -96,7 +96,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
    }
 
    //Build a request with list type.
-   buildRequestAndParseAsModelList(
+   public buildRequestAndParseAsModelList(
      url : string,
      requestType : string,
      model : any
