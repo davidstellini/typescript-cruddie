@@ -8,7 +8,9 @@
     "outDir": "lib"
   },
   "filesGlob": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "typings/tsd.d.ts",
+    "!node_modules/**/*.ts"
   ],
   "files": [
     "src/classes/helper/ApiParser.ts",
@@ -21,13 +23,7 @@
     "src/interfaces/model/modelFactory.ts",
     "src/interfaces/model/Serializable.ts",
     "src/interfaces/service/Service.ts",
-    "src/typings/bluebird/bluebird.d.ts",
-    "src/typings/form-data/form-data.d.ts",
-    "src/typings/inversify/inversify.d.ts",
-    "src/typings/node/node.d.ts",
-    "src/typings/request-promise/request-promise.d.ts",
-    "src/typings/request/request.d.ts",
-    "src/typings/tsd.d.ts"
+    "typings/tsd.d.ts"
   ],
   "atom": {
     "rewriteTsconfig": true
