@@ -8,8 +8,7 @@ import {DataRepository} from "../../interfaces/data/DataRepository";
 import request = require('request');
 import {ModelFactory} from "../../interfaces/model/modelFactory";
 
-import {DefaultApiParser} from "./DefaultApiParser";
-import {ApiItemParser} from "./ApiParser";
+import {ApiParser} from "./ApiParser";
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
@@ -49,7 +48,6 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   public buildRequestAndParseAsT<T extends Model> (
     url : string,
     requestType : string,
-    parser : ApiItemParser<T>,
     model : T
   ) : Promise<T> {
     let options = this.buildReqOptions(requestType, url, model);
@@ -57,7 +55,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     return new Promise<T>( (resolve, reject) =>{
       requestPromise(options).promise().then((response) =>
       {
-        resolve(parser.Parse(response));
+        resolve(ApiParser.Parse<T>(response));
       });
     });
   }
@@ -65,7 +63,6 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   public buildRequestAndParseAsTList<T extends Model> (
     url : string,
     requestType : string,
-    parser : ApiItemParser<T>,
     model : T
   ) : Promise<List<T>> {
 
@@ -74,7 +71,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     return new Promise<List<T>>( (resolve, reject) =>{
       requestPromise(options).promise().then((response) =>
       {
-        resolve(parser.ParseList(response));
+        resolve(ApiParser.ParseList<T>(response));
       });
     });
   }
@@ -90,9 +87,8 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
    ) : Promise<T> {
 
      let options = this.buildReqOptions(requestType, url, model);
-     let responseParser = new DefaultApiParser(this.factory);
 
-     return this.buildRequestAndParseAsT<T>(url, requestType, responseParser, model);
+     return this.buildRequestAndParseAsT<T>(url, requestType, model);
    }
 
    //Build a request with list type.
@@ -103,9 +99,8 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
    ) : Promise<List<T>> {
 
      let options = this.buildReqOptions(requestType, url, model);
-     let responseParser = new DefaultApiParser(this.factory);
 
-     return this.buildRequestAndParseAsTList<T>(url, requestType, responseParser, model);
+     return this.buildRequestAndParseAsTList<T>(url, requestType, model);
    }
 
 
