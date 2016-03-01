@@ -3,7 +3,7 @@
     "module": "commonjs",
     "noImplicitAny": false,
     "declaration": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "target": "es5",
     "outDir": "lib"
   },
