@@ -9,7 +9,7 @@
   },
   "filesGlob": [
     "src/**/*.ts",
-    "typings/tsd.d.ts",
+    "typings/main.d.ts",
     "!node_modules/**/*.ts"
   ],
   "files": [
@@ -23,7 +23,7 @@
     "src/interfaces/model/modelFactory.ts",
     "src/interfaces/model/Serializable.ts",
     "src/interfaces/service/Service.ts",
-    "typings/tsd.d.ts"
+    "typings/main.d.ts"
   ],
   "atom": {
     "rewriteTsconfig": true
