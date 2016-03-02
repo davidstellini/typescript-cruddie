@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "module": "amd",
+    "module": "commonjs",
     "noImplicitAny": false,
     "declaration": true,
     "sourceMap": true,
     "target": "es6",
     "moduleResolution": "node",
-    "out": "lib/tsmvc.js"
+    "outDir": "lib"
   },
   "filesGlob": [
     "src/**/*.ts",
