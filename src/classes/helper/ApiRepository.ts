@@ -1,16 +1,11 @@
-/// <reference path="../../../typings/main.d.ts"/>
-/// <reference path="../../../typings/main/ambient/request-promise/request-promise.d.ts"/>
 
 import {Model} from "../../interfaces/model/Model";
-
-
 import {List} from "./List";
 import {Serializable} from "../../interfaces/model/Serializable";
 
-import * as requestPromise from "request-promise";
+import requestPromise = require("request-promise");
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
-import request = require('request');
 import {ModelFactory} from "../../interfaces/model/modelFactory";
 
 import {ApiParser} from "./ApiParser";
