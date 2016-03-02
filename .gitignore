@@ -28,7 +28,6 @@ node_modules
 jspm_packages
 src/typings
 typings
-lib
 
 # Optional npm cache directory
 .npm
