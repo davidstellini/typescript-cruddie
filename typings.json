@@ -6,5 +6,8 @@
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#48c1e3c1d6baefa4f1a126f188c27c4fefd36bff",
     "request": "github:DefinitelyTyped/DefinitelyTyped/request/request.d.ts#abc2bcfb8524b1e027e6298d3348012b5b06eda5",
     "request-promise": "github:DefinitelyTyped/DefinitelyTyped/request-promise/request-promise.d.ts#14cc56099a4c90926839e406a87d36596d093708"
+  },
+  "dependencies": {
+    "bluebird": "github:typed-typings/npm-bluebird#524d5cc66654fe7c8dcbccf90faeaa70588853a0"
   }
 }
