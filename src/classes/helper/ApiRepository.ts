@@ -2,12 +2,10 @@
 import {Model} from "../../interfaces/model/Model";
 import {List} from "./List";
 import {Serializable} from "../../interfaces/model/Serializable";
-
-import requestPromise = require("request-promise");
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ModelFactory} from "../../interfaces/model/modelFactory";
-
+import * as requestPromise from "request-promise";
 import {ApiParser} from "./ApiParser";
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>

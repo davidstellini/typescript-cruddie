@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/Davste93/typescript-mvc.git"
   },
+  "scripts": {
+    "dist": "browserify lib --debug | exorcist lib/bundle.js.map > lib/bundle.js && uglifyjs lib/bundle.js --in-source-map lib/bundle.js.map --mangle --compress --output lib/bundle.min.js --source-map lib/bundle.min.js.map"
+  },
   "typescript": {
     "definition": "./lib/index.d.ts"
   },
@@ -28,9 +31,11 @@
   },
   "homepage": "https://github.com/Davste93/typescript-mvc#readme",
   "devDependencies": {
+    "exorcist": "^0.4.0",
     "typescript": "^1.7.5"
   },
   "dependencies": {
+    "cls-bluebird": "^1.0.1",
     "inversify": "^1.3.1",
     "request-promise": "^2.0.1",
     "stream": "0.0.2",
