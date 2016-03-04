@@ -4,16 +4,14 @@ import {List} from "./List";
 import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
-import {ModelFactory} from "../../interfaces/model/modelFactory";
 import {ApiParser} from "./ApiParser";
 import popsicle = require("popsicle");
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
-
+    abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
     abstract getUrl() : string;
-    factory : ModelFactory<T>;
 
     exists(modelID : string) : Promise<boolean> {
       throw new Error("Not implemented.");
@@ -43,63 +41,66 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   }
 
 
-  public buildRequestAndParseAsT<T extends Model> (
-    url : string,
-    requestType : string,
-    model : T
-  ) : Promise<T> {
-    let options = this.buildReqOptions(requestType, url, model);
 
-    return new Promise<T>( (resolve, reject) =>{
-      popsicle.request(options).then((response) =>
-      {
-        resolve(ApiParser.Parse<T>(response.body));
+    public buildRequestAndParseAsT<T extends Model> (
+      url : string,
+      requestType : string,
+      model : T
+    ) : Promise<T> {
+      let options = this.buildReqOptions(requestType, url, model);
+
+      return new Promise<T>( (resolve, reject) =>{
+        popsicle.request(options).then((response) =>
+        {
+          resolve(ApiParser.Parse<T>(this.getModelType(), response.body));
+        });
       });
-    });
-  }
+    }
 
-  public buildRequestAndParseAsTList<T extends Model> (
-    url : string,
-    requestType : string,
-    model : T
-  ) : Promise<List<T>> {
+    public buildRequestAndParseAsTList<T extends Model> (
+      url : string,
+      requestType : string,
+      model : T
+    ) : Promise<List<T>> {
 
-    let options = this.buildReqOptions(requestType, url, model);
+      let options = this.buildReqOptions(requestType, url, model);
 
-    return new Promise<List<T>>( (resolve, reject) =>{
-      popsicle.request(options).then((response) =>
-      {
-        resolve(ApiParser.ParseList<T>(response.body));
+      return new Promise<List<T>>( (resolve, reject) =>{
+        popsicle.request(options).then((response) =>
+        {
+          resolve(ApiParser.ParseList<T>(this.getModelType(), response.body));
+        });
       });
-    });
-  }
+    }
 
 
-  /** Makes a request. If model is not null, it will pass it to the request
-  as JSON. It will parse the response using the parser function provided,
-  encapsulated in a promise. Uses default item parser. */
-   public buildRequestAndParseAsModel (
-     url : string,
-     requestType : string,
-     model : any
-   ) : Promise<T> {
+    /** Makes a request. If model is not null, it will pass it to the request
+    as JSON. It will parse the response using the parser function provided,
+    encapsulated in a promise. Uses default item parser. */
+     public buildRequestAndParseAsModel (
+       url : string,
+       requestType : string,
+       model : any
+     ) : Promise<T> {
 
-     let options = this.buildReqOptions(requestType, url, model);
+       let options = this.buildReqOptions(requestType, url, model);
 
-     return this.buildRequestAndParseAsT<T>(url, requestType, model);
-   }
+       return this.buildRequestAndParseAsT<T>(url, requestType, model);
+     }
 
-   //Build a request with list type.
-   public buildRequestAndParseAsModelList(
-     url : string,
-     requestType : string,
-     model : any
-   ) : Promise<List<T>> {
+     //Build a request with list type.
+     public buildRequestAndParseAsModelList(
+       url : string,
+       requestType : string,
+       model : any
+     ) : Promise<List<T>> {
 
-     let options = this.buildReqOptions(requestType, url, model);
+       let options = this.buildReqOptions(requestType, url, model);
 
-     return this.buildRequestAndParseAsTList<T>(url, requestType, model);
-   }
+       return this.buildRequestAndParseAsTList<T>(url, requestType, model);
+     }
+
+
 
 
   getItem(modelID : string) : Promise<T> {

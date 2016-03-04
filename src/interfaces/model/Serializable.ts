@@ -1,6 +1,7 @@
 //IMPORTANT : All properties of serializable class must be set to null/default.
 export  abstract class Serializable {
-  FromJson(obj : any) : void{
+  //reads object into properties of current object
+  readInto(obj : any) : void{
       for (let property in obj) {
         this[property] = obj[property]; //dangerous. Ideally we register the
         // serializable classes on initialization so that we don't set properties
@@ -12,12 +13,12 @@ export  abstract class Serializable {
       };
   }
 
-  Stringify() : string{
+  stringify() : string{
     return JSON.stringify(this);
   }
 
-  parse<T extends Serializable>(string : string) : T{
-    var outputObj : T = JSON.parse(string);
-    return outputObj;
-  }
+  // static parse<T extends Serializable>(string : string) : T{
+  //   var outputObj : T = JSON.parse(string);
+  //   return outputObj;
+  // }
 }

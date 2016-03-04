@@ -1,17 +1,13 @@
 import {Serializable} from "./Serializable";
-import {ModelFactory} from "./modelFactory";
 
-export abstract class Model extends Serializable implements ModelFactory<Model>  {
-  abstract create() : Model;
-
+export abstract class Model extends Serializable   {
   //Dynamically get index based on which property was marked with
   //@indexKey annotation.
-  getIndex() : string {
+  public getIndex() : string {
     if (this['indexKey'] === undefined)
     {
         return null;
     }
-
     return this[this['indexKey']];
   }
 }

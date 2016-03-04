@@ -1,10 +1,11 @@
 import { Model } from "../../interfaces/model/Model";
 import { List } from "./List";
 import { DataRepository } from "../../interfaces/data/DataRepository";
-import { ModelFactory } from "../../interfaces/model/modelFactory";
 export declare abstract class ApiRepository<T extends Model> implements DataRepository<T> {
+    abstract getModelType(): {
+        new (): any;
+    };
     abstract getUrl(): string;
-    factory: ModelFactory<T>;
     exists(modelID: string): Promise<boolean>;
     getRange(modelIDList: List<string>): Promise<List<T>>;
     count(): number;
