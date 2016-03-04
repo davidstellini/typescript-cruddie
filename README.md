@@ -1,5 +1,5 @@
-# typescript-mvc
-An library allowing MVC implementation via typescript.
+# typescript-cruddie
+Autogeneration of CRUD operations from entities. End goal will be based on Open API Specification, and automatically generates data layer handling all API requests.
 
 Under Construction! Do not use!
 ===================
