@@ -5,8 +5,8 @@ import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ModelFactory} from "../../interfaces/model/modelFactory";
-import * as requestPromise from "request-promise";
 import {ApiParser} from "./ApiParser";
+import popsicle = require("popsicle");
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
@@ -51,9 +51,9 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     let options = this.buildReqOptions(requestType, url, model);
 
     return new Promise<T>( (resolve, reject) =>{
-      requestPromise(options).promise().then((response) =>
+      popsicle.request(options).then((response) =>
       {
-        resolve(ApiParser.Parse<T>(response));
+        resolve(ApiParser.Parse<T>(response.body));
       });
     });
   }
@@ -67,9 +67,9 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     let options = this.buildReqOptions(requestType, url, model);
 
     return new Promise<List<T>>( (resolve, reject) =>{
-      requestPromise(options).promise().then((response) =>
+      popsicle.request(options).then((response) =>
       {
-        resolve(ApiParser.ParseList<T>(response));
+        resolve(ApiParser.ParseList<T>(response.body));
       });
     });
   }
