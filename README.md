@@ -1,4 +1,8 @@
-# typescript-cruddie
+# typescript-cruddie-core
+
+Hi, I'm Cruddie! Tell me what your app connects to, what your CRUD operations looks like, and I'll write your code for you!
+
+====================================================================================================================
 Autogeneration of CRUD operations from entities. End goal will be based on Open API Specification, and automatically generates data layer handling all API requests.
 
 Under Construction! Do not use!
