@@ -5,7 +5,7 @@ import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
-import * as popsicle from "popsicle";
+var popsicle = require("popsicle");
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
