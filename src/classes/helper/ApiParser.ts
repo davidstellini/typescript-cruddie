@@ -3,8 +3,7 @@ import {List} from "./List";
 
 export class ApiParser {
 
-  static Parse<T>(objType: { new(): T; }, jsonString: string) {
-      var json = JSON.parse(jsonString);
+  static Parse<T>(objType: { new(): T; }, json: any) {
     const newObj = new objType();
     const relationships = objType["relationships"] || {};
 
@@ -27,10 +26,9 @@ export class ApiParser {
     return newObj;
 }
 
-static ParseList<T>(objType: { new(): T; }, jsonString: any) : List<T>{
+static ParseList<T>(objType: { new(): T; }, json: any) : List<T>{
   var items : List<T>  = new List<T>();
-  var resp = JSON.parse(jsonString);
-  resp.forEach(modelListItem =>
+  json.forEach(modelListItem =>
   {
     var model = <T> modelListItem;
     items.add(model);
@@ -39,11 +37,11 @@ static ParseList<T>(objType: { new(): T; }, jsonString: any) : List<T>{
   return items;
 }
 
-  static ParseUnsafe<T>(jsonString : any ) : T{
+  static ParseUnsafe<T>(jsonString : string ) : T{
     return <T>JSON.parse(jsonString);
   }
 
-  static ParseListUnsafe<T>(jsonString : any) : List<T>{
+  static ParseListUnsafe<T>(jsonString : string) : List<T>{
     var items : List<T>  = new List<T>();
     var resp = JSON.parse(jsonString);
     resp.forEach(modelListItem =>

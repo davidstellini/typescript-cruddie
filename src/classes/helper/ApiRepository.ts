@@ -5,10 +5,11 @@ import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
-import popsicle = require("popsicle");
+import * as popsicle from "popsicle";
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
+
     abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
     abstract getUrl() : string;
@@ -29,7 +30,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
     var options = {
       method : requestType,
-      uri : url
+      url : url
     }
 
     if (model !== null){

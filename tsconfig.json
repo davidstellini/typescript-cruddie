@@ -17,7 +17,6 @@
     "src/classes/helper/ApiParser.ts",
     "src/classes/helper/ApiRepository.ts",
     "src/classes/helper/List.ts",
-    "src/example.ts",
     "src/index.ts",
     "src/interfaces/data/DataRepository.ts",
     "src/interfaces/model/Model.ts",
