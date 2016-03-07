@@ -6,4 +6,5 @@ export declare class List<T> {
     get(index: number): T;
     first(): T;
     last(): T;
+    getArray(): Array<T>;
 }

@@ -34,4 +34,8 @@ export class List<T> {
       }
     }
 
+    getArray() : Array<T> {
+      return this.items;
+    }
+
 }
