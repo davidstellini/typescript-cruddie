@@ -1,5 +1,6 @@
 import { Model } from "../model/Model";
 import { List } from "../../classes/helper/List";
+import { Promise } from "es6-promise";
 export interface DataRepository<T extends Model> {
     getModelType(): {
         new (): any;
@@ -10,6 +11,6 @@ export interface DataRepository<T extends Model> {
     getRange(modelIDList: List<string>): Promise<List<T>>;
     count(): number;
     addItem(modelItem: T): Promise<T>;
-    removeItem(emptyModelWithID: T): Promise<T>;
+    removeItem(modelID: string): Promise<T>;
     saveItem(modelItem: T): Promise<T>;
 }

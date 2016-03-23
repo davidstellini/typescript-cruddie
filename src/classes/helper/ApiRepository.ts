@@ -5,7 +5,10 @@ import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
-var popsicle = require("popsicle");
+import {Promise} from "es6-promise";
+import * as popsicle from "popsicle";
+
+
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
@@ -15,6 +18,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     abstract getUrl() : string;
 
     exists(modelID : string) : Promise<boolean> {
+
       throw new Error("Not implemented.");
     }
 
@@ -131,9 +135,9 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
 //TODO: Investigate - removeItem obviously won't return an item because it has been removed.
 // check how API is working
-  removeItem(emptyModelWithID : T) : Promise<T> {
+  removeItem(modelID : string) : Promise<T> {
     return this.buildRequestAndParseAsModel(
-      this.getUrl() + '/' + emptyModelWithID,
+      this.getUrl() + '/' + modelID,
       'DELETE',
       null
     );

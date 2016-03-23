@@ -1,6 +1,5 @@
-import {Inject, TypeBinding, Kernel, TypeBindingScopeEnum} from "inversify";
+//import {Inject, TypeBinding, Kernel, TypeBindingScopeEnum} from "inversify";
 export interface Service {
-
   // dependencyList : List< IDataListAsync<IModel, IData<IModel>>>;
   //
   //   registerDependency <BaseType extends IModel,

@@ -1,6 +1,7 @@
 import { Model } from "../../interfaces/model/Model";
 import { List } from "./List";
 import { DataRepository } from "../../interfaces/data/DataRepository";
+import { Promise } from "es6-promise";
 export declare abstract class ApiRepository<T extends Model> implements DataRepository<T> {
     abstract getModelType(): {
         new (): any;
@@ -20,6 +21,6 @@ export declare abstract class ApiRepository<T extends Model> implements DataRepo
     getItem(modelID: string): Promise<T>;
     getAllItems(): Promise<List<T>>;
     addItem(modelItem: T): Promise<T>;
-    removeItem(emptyModelWithID: T): Promise<T>;
+    removeItem(modelID: string): Promise<T>;
     saveItem(modelItem: T): Promise<T>;
 }
