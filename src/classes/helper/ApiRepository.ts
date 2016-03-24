@@ -29,6 +29,10 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       throw new Error("Not implemented.");
     }
 
+    findAllWhich(query : string) : Promise<List<T>> {
+      throw new Error("Not implemented.");
+    }
+
     //Build request options
   public buildReqOptions(requestType : string, url : string, model : any) : any {
 
