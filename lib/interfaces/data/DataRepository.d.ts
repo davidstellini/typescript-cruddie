@@ -8,7 +8,7 @@ export interface DataRepository<T extends Model> {
     find(modelID: string): Promise<T>;
     exists(modelID: string): Promise<boolean>;
     findAll(): Promise<List<T>>;
-    findAllWhich(query: string): Promise<List<T>>;
+    findAllWith(query: string): Promise<List<T>>;
     getRange(modelIDList: List<string>): Promise<List<T>>;
     count(): number;
     addItem(modelItem: T): Promise<T>;

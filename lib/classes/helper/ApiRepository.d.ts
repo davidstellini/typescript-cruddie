@@ -10,13 +10,10 @@ export declare abstract class ApiRepository<T extends Model> implements DataRepo
     exists(modelID: string): Promise<boolean>;
     getRange(modelIDList: List<string>): Promise<List<T>>;
     count(): number;
-    findAllWhich(query: string): Promise<List<T>>;
+    findAllWith(query: string): Promise<List<T>>;
     buildReqOptions(requestType: string, url: string, model: any): any;
     buildRequestAndParseAsT<T extends Model>(url: string, requestType: string, model: T): Promise<T>;
     buildRequestAndParseAsTList<T extends Model>(url: string, requestType: string, model: T): Promise<List<T>>;
-    /** Makes a request. If model is not null, it will pass it to the request
-    as JSON. It will parse the response using the parser function provided,
-    encapsulated in a promise. Uses default item parser. */
     buildRequestAndParseAsModel(url: string, requestType: string, model: any): Promise<T>;
     buildRequestAndParseAsModelList(url: string, requestType: string, model: any): Promise<List<T>>;
     find(modelID: string): Promise<T>;
