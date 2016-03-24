@@ -108,7 +108,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
 
 
-  getItem(modelID : string) : Promise<T> {
+  find(modelID : string) : Promise<T> {
     return this.buildRequestAndParseAsModel(
       this.getUrl() + '/' + modelID,
       'GET',
@@ -117,7 +117,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   }
 
 
-  getAllItems() : Promise<List<T>> {
+  findAll() : Promise<List<T>> {
     return this.buildRequestAndParseAsModelList(
       this.getUrl(),
       'GET',
@@ -144,9 +144,9 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
   }
 
 
-  saveItem(modelItem : T) : Promise<T> {
+  saveItem(modelItem : T, modelID : string) : Promise<T> {
     return this.buildRequestAndParseAsModel(
-      this.getUrl(),
+      this.getUrl() + '/' + modelID,
       'PUT',
       modelItem
     );

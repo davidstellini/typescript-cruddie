@@ -18,9 +18,9 @@ export declare abstract class ApiRepository<T extends Model> implements DataRepo
     encapsulated in a promise. Uses default item parser. */
     buildRequestAndParseAsModel(url: string, requestType: string, model: any): Promise<T>;
     buildRequestAndParseAsModelList(url: string, requestType: string, model: any): Promise<List<T>>;
-    getItem(modelID: string): Promise<T>;
-    getAllItems(): Promise<List<T>>;
+    find(modelID: string): Promise<T>;
+    findAll(): Promise<List<T>>;
     addItem(modelItem: T): Promise<T>;
     removeItem(modelID: string): Promise<T>;
-    saveItem(modelItem: T): Promise<T>;
+    saveItem(modelItem: T, modelID: string): Promise<T>;
 }
