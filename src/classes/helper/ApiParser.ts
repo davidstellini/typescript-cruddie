@@ -26,7 +26,8 @@ export class ApiParser {
     return newObj;
 }
 
-static ParseList<T>(objType: { new(): T; }, json: any) : List<T>{
+static ParseList<T>(objType: { new(): T; }, jsonString: string) : List<T>{
+  var json = JSON.parse(jsonString);
   var items : List<T>  = new List<T>();
   json.forEach(modelListItem =>
   {

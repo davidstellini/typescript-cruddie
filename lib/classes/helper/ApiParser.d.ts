@@ -5,7 +5,7 @@ export declare class ApiParser {
     }, json: any): T;
     static ParseList<T>(objType: {
         new (): T;
-    }, json: any): List<T>;
+    }, jsonString: string): List<T>;
     static ParseUnsafe<T>(jsonString: string): T;
     static ParseListUnsafe<T>(jsonString: string): List<T>;
 }
