@@ -29,6 +29,10 @@ export class ApiParser {
 static ParseList<T>(objType: { new(): T; }, jsonString: string) : List<T>{
   var json = JSON.parse(jsonString);
   var items : List<T>  = new List<T>();
+  if (!Array.isArray(json)){
+    throw ("Invalid response: " + jsonString);
+  }
+
   json.forEach(modelListItem =>
   {
     var model = <T> modelListItem;

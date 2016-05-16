@@ -59,10 +59,16 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       let options = this.buildReqOptions(requestType, url, model);
 
       return new Promise<T>( (resolve, reject) =>{
-        popsicle.request(options).then((response) =>
+        return popsicle.request(options).then((response) =>
         {
-          resolve(ApiParser.Parse<T>(this.getModelType(), response.body));
-        });
+          var resp : T;
+          try {
+             resp = ApiParser.Parse<T>(this.getModelType(), response.body);
+             resolve(resp);
+          } catch (e) {
+            reject(e);
+          }
+        }).catch(r => {reject(r)});
       });
     }
 
@@ -77,8 +83,14 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       return new Promise<List<T>>( (resolve, reject) =>{
         popsicle.request(options).then((response) =>
         {
-          resolve(ApiParser.ParseList<T>(this.getModelType(), response.body));
-        });
+          var resp : List<T>;
+          try {
+              resp = ApiParser.ParseList<T>(this.getModelType(), response.body);
+              resolve(resp);
+           } catch (e) {
+             reject(e);
+           }
+        }).catch(r => {reject(r)});
       });
     }
 
