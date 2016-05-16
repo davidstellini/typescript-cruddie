@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Davste93/typescript-mvc.git"
+    "url": "git+https://github.com/Davste93/typescript-cruddie.git"
   },
   "scripts": {
     "dist": "tsc"
@@ -27,9 +27,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Davste93/typescript-mvc/issues"
+    "url": "https://github.com/Davste93/typescript-cruddie/issues"
   },
-  "homepage": "https://github.com/Davste93/typescript-mvc#readme",
+  "homepage": "https://github.com/Davste93/typescript-cruddie#readme",
   "devDependencies": {
     "exorcist": "^0.4.0",
     "typescript": "^1.7.5"

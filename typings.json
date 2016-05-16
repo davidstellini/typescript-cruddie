@@ -4,5 +4,7 @@
     "make-error": "registry:npm/make-error#1.0.0+20160211003958",
     "popsicle": "npm:popsicle"
   },
-  "ambientDependencies": {}
+  "ambientDependencies": {
+    "node": "registry:dt/node#6.0.0+20160514165920"
+  }
 }
