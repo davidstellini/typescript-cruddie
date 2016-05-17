@@ -7,15 +7,17 @@ import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
 import {Promise} from "es6-promise";
 import * as popsicle from "popsicle";
-
+import {ApiRequestDecorator} from "./ApiRequestDecorator";
 
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
-
+    public requestDecorator : ApiRequestDecorator = null;
     abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
     abstract getUrl() : string;
+
+
 
     exists(modelID : string) : Promise<boolean> {
 
@@ -46,6 +48,9 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       options['body'] = model;
     }
 
+    if (this.requestDecorator !== null) {
+      options = this.requestDecorator.decorateRequest(options);
+    }
     return options;
   }
 
@@ -64,7 +69,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
           if (response.statusType() !== 2) {
             reject(response);
           }
-          
+
           var resp : T;
           try {
              resp = ApiParser.Parse<T>(this.getModelType(), response.body);

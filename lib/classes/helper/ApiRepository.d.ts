@@ -2,7 +2,9 @@ import { Model } from "../../interfaces/model/Model";
 import { List } from "./List";
 import { DataRepository } from "../../interfaces/data/DataRepository";
 import { Promise } from "es6-promise";
+import { ApiRequestDecorator } from "./ApiRequestDecorator";
 export declare abstract class ApiRepository<T extends Model> implements DataRepository<T> {
+    requestDecorator: ApiRequestDecorator;
     abstract getModelType(): {
         new (): any;
     };
