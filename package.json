@@ -1,6 +1,6 @@
 {
   "name": "tsmvc",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "Allows usage of POTOs (Plain old TypeScript Objects) as models for data layer such as API resource.",
   "main": "lib/index.js",
   "repository": {
