@@ -4,7 +4,6 @@ import {List} from "./List";
 export class ApiParser {
 
   static Parse<T>(objType: { new(): T; }, json: any) {
-    debugger;
     const newObj = new objType();
     const relationships = objType["relationships"] || {};
 
@@ -28,7 +27,6 @@ export class ApiParser {
 }
 
 static ParseList<T>(objType: { new(): T; }, jsonString: string) : List<T>{
-  debugger;
   var json = JSON.parse(jsonString);
   var items : List<T>  = new List<T>();
   if (!Array.isArray(json)){

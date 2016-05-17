@@ -61,6 +61,10 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       return new Promise<T>( (resolve, reject) =>{
         return popsicle.request(options).then((response) =>
         {
+          if (response.statusType() !== 2) {
+            reject(response);
+          }
+          
           var resp : T;
           try {
              resp = ApiParser.Parse<T>(this.getModelType(), response.body);
@@ -83,6 +87,10 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       return new Promise<List<T>>( (resolve, reject) =>{
         popsicle.request(options).then((response) =>
         {
+          if (response.statusType() !== 2) {
+            reject(response);
+          }
+
           var resp : List<T>;
           try {
               resp = ApiParser.ParseList<T>(this.getModelType(), response.body);
