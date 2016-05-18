@@ -1,4 +1,5 @@
 export * from  "./classes/helper/ApiParser";
+export * from  "./classes/helper/Parser";
 export * from  "./classes/helper/ApiRepository";
 export * from  "./classes/helper/ApiRequestDecorator";
 export * from  "./classes/helper/List";
