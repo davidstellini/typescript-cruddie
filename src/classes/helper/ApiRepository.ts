@@ -8,11 +8,12 @@ import {ApiParser} from "./ApiParser";
 import {Promise} from "es6-promise";
 import * as popsicle from "popsicle";
 import {ApiRequestDecorator} from "./ApiRequestDecorator";
-
+import {Parser} from "./Parser";
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
     public requestDecorator : ApiRequestDecorator = null;
+    public parser : Parser<T> = null; //new ApiParser<T>();
     abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
     abstract getUrl() : string;
@@ -56,10 +57,11 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
 
 
-    public buildRequestAndParseAsT<T extends Model> (
+    public buildRequestAndParseAsT<T> (
       url : string,
       requestType : string,
-      model : T
+      model : T,
+      parser : Parser<T>
     ) : Promise<T> {
       let options = this.buildReqOptions(requestType, url, model);
 
@@ -72,7 +74,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
           var resp : T;
           try {
-             resp = ApiParser.Parse<T>(this.getModelType(), response.body);
+             resp = parser.Parse(this.getModelType(), response.body);
              resolve(resp);
           } catch (e) {
             reject(e);
@@ -84,7 +86,8 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
     public buildRequestAndParseAsTList<T extends Model> (
       url : string,
       requestType : string,
-      model : T
+      model : T,
+      parser : Parser<T>
     ) : Promise<List<T>> {
 
       let options = this.buildReqOptions(requestType, url, model);
@@ -98,7 +101,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
           var resp : List<T>;
           try {
-              resp = ApiParser.ParseList<T>(this.getModelType(), response.body);
+              resp = parser.ParseList(this.getModelType(), response.body);
               resolve(resp);
            } catch (e) {
              reject(e);
@@ -119,7 +122,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
        let options = this.buildReqOptions(requestType, url, model);
 
-       return this.buildRequestAndParseAsT<T>(url, requestType, model);
+       return this.buildRequestAndParseAsT<T>(url, requestType, model, this.parser);
      }
 
      //Build a request with list type.
@@ -131,7 +134,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
        let options = this.buildReqOptions(requestType, url, model);
 
-       return this.buildRequestAndParseAsTList<T>(url, requestType, model);
+       return this.buildRequestAndParseAsTList<T>(url, requestType, model, this.parser);
      }
 
 

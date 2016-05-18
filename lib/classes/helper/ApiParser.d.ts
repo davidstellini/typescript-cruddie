@@ -1,11 +1,10 @@
 import { List } from "./List";
-export declare class ApiParser {
-    static Parse<T>(objType: {
+import { Parser } from "./Parser";
+export declare class ApiParser<T> implements Parser<T> {
+    Parse(objType: {
         new (): T;
     }, json: any): T;
-    static ParseList<T>(objType: {
+    ParseList(objType: {
         new (): T;
     }, jsonString: string): List<T>;
-    static ParseUnsafe<T>(jsonString: string): T;
-    static ParseListUnsafe<T>(jsonString: string): List<T>;
 }

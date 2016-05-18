@@ -1,9 +1,9 @@
 import {Model} from "../../interfaces/model/Model";
 import {List} from "./List";
+import {Parser} from "./Parser";
 
-export class ApiParser {
-
-  static Parse<T>(objType: { new(): T; }, json: any) {
+export class ApiParser<T> implements Parser<T> {
+  Parse(objType: { new(): T; }, json: any) {
     const newObj = new objType();
     const relationships = objType["relationships"] || {};
 
@@ -14,7 +14,7 @@ export class ApiParser {
                     newObj[prop] = json[prop];
                 }
                 else {
-                    newObj[prop] = ApiParser.Parse(relationships[prop], json[prop]);
+                    newObj[prop] = this.Parse(relationships[prop], json[prop]);
                 }
             }
             else {
@@ -26,7 +26,7 @@ export class ApiParser {
     return newObj;
 }
 
-static ParseList<T>(objType: { new(): T; }, jsonString: string) : List<T>{
+ParseList(objType: { new(): T; }, jsonString: string) : List<T>{
   var json = JSON.parse(jsonString);
   var items : List<T>  = new List<T>();
   if (!Array.isArray(json)){
@@ -41,20 +41,20 @@ static ParseList<T>(objType: { new(): T; }, jsonString: string) : List<T>{
 
   return items;
 }
-
-  static ParseUnsafe<T>(jsonString : string ) : T{
-    return <T>JSON.parse(jsonString);
-  }
-
-  static ParseListUnsafe<T>(jsonString : string) : List<T>{
-    var items : List<T>  = new List<T>();
-    var resp = JSON.parse(jsonString);
-    resp.forEach(modelListItem =>
-    {
-      var model = <T> modelListItem;
-      items.add(model);
-    });
-
-    return items;
-  }
+  //
+  // static ParseUnsafe<T>(jsonString : string ) : T{
+  //   return <T>JSON.parse(jsonString);
+  // }
+  //
+  // static ParseListUnsafe<T>(jsonString : string) : List<T>{
+  //   var items : List<T>  = new List<T>();
+  //   var resp = JSON.parse(jsonString);
+  //   resp.forEach(modelListItem =>
+  //   {
+  //     var model = <T> modelListItem;
+  //     items.add(model);
+  //   });
+  //
+  //   return items;
+  // }
 }
