@@ -6,7 +6,7 @@ export declare abstract class ApiRepository<T extends Model> implements DataRepo
     abstract getModelType(): {
         new (): any;
     };
-    abstract getUrl(): string;
+    getUrl(): string;
     exists(modelID: string): Promise<boolean>;
     getRange(modelIDList: List<string>): Promise<List<T>>;
     count(): number;

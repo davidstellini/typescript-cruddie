@@ -15,7 +15,11 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
     abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
-    abstract getUrl() : string;
+    getUrl() : string {
+      throw new Error("You must either override getUrl() and supply a base URL value, or " +
+      "provide your own implementation for find(), findAll() and all crud " +
+      "operations in this class." );
+    }
 
     exists(modelID : string) : Promise<boolean> {
 
