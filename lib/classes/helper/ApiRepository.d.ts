@@ -2,7 +2,11 @@ import { Model } from "../../interfaces/model/Model";
 import { List } from "./List";
 import { DataRepository } from "../../interfaces/data/DataRepository";
 import { Promise } from "es6-promise";
+import { ApiRequestDecorator } from "./ApiRequestDecorator";
+import { Parser } from "./Parser";
 export declare abstract class ApiRepository<T extends Model> implements DataRepository<T> {
+    requestDecorator: ApiRequestDecorator;
+    parser: Parser<T>;
     abstract getModelType(): {
         new (): any;
     };
@@ -12,8 +16,8 @@ export declare abstract class ApiRepository<T extends Model> implements DataRepo
     count(): number;
     findAllWith(query: string): Promise<List<T>>;
     buildReqOptions(requestType: string, url: string, model: any): any;
-    buildRequestAndParseAsT<T extends Model>(url: string, requestType: string, model: T): Promise<T>;
-    buildRequestAndParseAsTList<T extends Model>(url: string, requestType: string, model: T): Promise<List<T>>;
+    buildRequestAndParseAsT<T>(url: string, requestType: string, model: T, parser: Parser<T>): Promise<T>;
+    buildRequestAndParseAsTList<T extends Model>(url: string, requestType: string, model: T, parser: Parser<T>): Promise<List<T>>;
     /** Makes a request. If model is not null, it will pass it to the request
     as JSON. It will parse the response using the parser function provided,
     encapsulated in a promise. Uses default item parser. */

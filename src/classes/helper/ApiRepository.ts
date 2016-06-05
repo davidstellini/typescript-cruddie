@@ -7,12 +7,13 @@ import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
 import {Promise} from "es6-promise";
 import * as popsicle from "popsicle";
-
-
+import {ApiRequestDecorator} from "./ApiRequestDecorator";
+import {Parser} from "./Parser";
 
 export abstract class ApiRepository<T extends Model> implements DataRepository<T>
 {
-
+    public requestDecorator : ApiRequestDecorator = null;
+    public parser : Parser<T> = null; //new ApiParser<T>();
     abstract getModelType() : { new(): any; };
     ///Return current url with no trailing slash
     getUrl() : string {
@@ -20,6 +21,8 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       "provide your own implementation for find(), findAll() and all crud " +
       "operations in this class." );
     }
+
+
 
     exists(modelID : string) : Promise<boolean> {
 
@@ -50,30 +53,45 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       options['body'] = model;
     }
 
+    if (this.requestDecorator !== null) {
+      options = this.requestDecorator.decorateRequest(options);
+    }
     return options;
   }
 
 
 
-    public buildRequestAndParseAsT<T extends Model> (
+    public buildRequestAndParseAsT<T> (
       url : string,
       requestType : string,
-      model : T
+      model : T,
+      parser : Parser<T>
     ) : Promise<T> {
       let options = this.buildReqOptions(requestType, url, model);
 
       return new Promise<T>( (resolve, reject) =>{
-        popsicle.request(options).then((response) =>
+        return popsicle.request(options).then((response) =>
         {
-          resolve(ApiParser.Parse<T>(this.getModelType(), response.body));
-        });
+          if (response.statusType() !== 2) {
+            reject(response);
+          }
+
+          var resp : T;
+          try {
+             resp = parser.Parse(this.getModelType(), response.body);
+             resolve(resp);
+          } catch (e) {
+            reject(e);
+          }
+        }).catch(r => {reject(r)});
       });
     }
 
     public buildRequestAndParseAsTList<T extends Model> (
       url : string,
       requestType : string,
-      model : T
+      model : T,
+      parser : Parser<T>
     ) : Promise<List<T>> {
 
       let options = this.buildReqOptions(requestType, url, model);
@@ -81,8 +99,18 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
       return new Promise<List<T>>( (resolve, reject) =>{
         popsicle.request(options).then((response) =>
         {
-          resolve(ApiParser.ParseList<T>(this.getModelType(), response.body));
-        });
+          if (response.statusType() !== 2) {
+            reject(response);
+          }
+
+          var resp : List<T>;
+          try {
+              resp = parser.ParseList(this.getModelType(), response.body);
+              resolve(resp);
+           } catch (e) {
+             reject(e);
+           }
+        }).catch(r => {reject(r)});
       });
     }
 
@@ -98,7 +126,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
        let options = this.buildReqOptions(requestType, url, model);
 
-       return this.buildRequestAndParseAsT<T>(url, requestType, model);
+       return this.buildRequestAndParseAsT<T>(url, requestType, model, this.parser);
      }
 
      //Build a request with list type.
@@ -110,7 +138,7 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
 
        let options = this.buildReqOptions(requestType, url, model);
 
-       return this.buildRequestAndParseAsTList<T>(url, requestType, model);
+       return this.buildRequestAndParseAsTList<T>(url, requestType, model, this.parser);
      }
 
 

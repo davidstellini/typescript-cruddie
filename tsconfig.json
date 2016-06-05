@@ -16,7 +16,9 @@
   "files": [
     "src/classes/helper/ApiParser.ts",
     "src/classes/helper/ApiRepository.ts",
+    "src/classes/helper/ApiRequestDecorator.ts",
     "src/classes/helper/List.ts",
+    "src/classes/helper/Parser.ts",
     "src/index.ts",
     "src/interfaces/data/DataRepository.ts",
     "src/interfaces/model/Model.ts",
