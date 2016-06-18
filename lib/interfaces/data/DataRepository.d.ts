@@ -1,6 +1,5 @@
 import { Model } from "../model/Model";
 import { List } from "../../classes/helper/List";
-import { Promise } from "es6-promise";
 export interface DataRepository<T extends Model> {
     getModelType(): {
         new (): any;
