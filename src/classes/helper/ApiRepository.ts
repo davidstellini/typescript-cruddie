@@ -123,9 +123,6 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
        requestType : string,
        model : any
      ) : Promise<T> {
-
-       let options = this.buildReqOptions(requestType, url, model);
-
        return this.buildRequestAndParseAsT<T>(url, requestType, model, this.parser);
      }
 
@@ -135,9 +132,6 @@ export abstract class ApiRepository<T extends Model> implements DataRepository<T
        requestType : string,
        model : any
      ) : Promise<List<T>> {
-
-       let options = this.buildReqOptions(requestType, url, model);
-
        return this.buildRequestAndParseAsTList<T>(url, requestType, model, this.parser);
      }
 
