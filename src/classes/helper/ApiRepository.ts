@@ -5,7 +5,6 @@ import {Serializable} from "../../interfaces/model/Serializable";
 //APIModelList using Request Library
 import {DataRepository} from "../../interfaces/data/DataRepository";
 import {ApiParser} from "./ApiParser";
-import {Promise} from "es6-promise";
 import * as popsicle from "popsicle";
 import {ApiRequestDecorator} from "./ApiRequestDecorator";
 import {Parser} from "./Parser";
