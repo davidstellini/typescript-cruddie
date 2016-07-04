@@ -23,8 +23,8 @@
     "src/interfaces/data/DataRepository.ts",
     "src/interfaces/model/Model.ts",
     "src/interfaces/model/Serializable.ts",
-    "src/interfaces/service/Service.ts",
-    "typings/index.d.ts"
+    "src/interfaces/model/Url.ts",
+    "src/interfaces/service/Service.ts"
   ],
   "atom": {
     "rewriteTsconfig": true

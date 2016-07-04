@@ -6,3 +6,4 @@ export * from "./classes/helper/List";
 export * from "./interfaces/data/DataRepository";
 export * from "./interfaces/model/Model";
 export * from "./interfaces/service/Service";
+export * from "./interfaces/model/Url";
